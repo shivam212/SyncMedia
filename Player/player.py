@@ -10,7 +10,7 @@ def window():
     play.setText('Play')
     pause.setText('Pause')
     play.move(0,700)
-    pause.move(50,700)
+    pause.move(80,700)
     w.setWindowTitle('SyncMedia')
     w.setGeometry(100,100,1024,768)
     w.show()
