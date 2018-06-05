@@ -9,7 +9,7 @@ class Window(QtWidgets.QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.k=1
+        self.k=0
         self.init_ui()
 
     def init_ui(self):
@@ -20,11 +20,14 @@ class Window(QtWidgets.QMainWindow):
         self.play.move(0,700)
         self.stop.move(80,700)
         self.setWindowTitle('SyncMedia')
-        self.setGeometry(100,100,1024,768)
+        menu = self.menuBar()
+        file = menu.addMenu(' &File ')
+        open =QtWidgets.QAction(QtGui.QIcon('open.png'), '&Open', self)
+        file.addAction(open)
+        #file.addAction(close)
         self.play.clicked.connect(self.play_click)
         self.mediaPlayer =QMediaPlayer(None, QMediaPlayer.VideoSurface)
         self.videoWidget = QVideoWidget()
-        self.videoWidget.setGeometry(100,100,500,500)
         wid =QtWidgets.QWidget(self)
         self.setCentralWidget(wid)
         controlLayout=QtWidgets.QHBoxLayout()
@@ -42,9 +45,11 @@ class Window(QtWidgets.QMainWindow):
         self.show()
     def play_click(self):
         if(self.k==1):
+            self.mediaPlayer.play()
             self.play.setText('Pause')
             self.k=0
         elif(self.k==0):
+            self.mediaPlayer.pause()
             self.play.setText('Play')
             self.k=1
 
