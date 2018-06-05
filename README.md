@@ -14,8 +14,16 @@ Video Directory is still hardcoded.
 
 Install PyQt5 before using this.It renders the GUI.
 
+On Linux.
 ---
 ~~~
 pip install PyQt5
+~~~
+---
+
+On Mac.
+---
+~~~
+pip3 install PyQt5
 ~~~
 ---
