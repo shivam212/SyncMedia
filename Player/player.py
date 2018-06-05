@@ -31,7 +31,6 @@ class Window(QtWidgets.QMainWindow):
         controlLayout.addWidget(self.play)
         controlLayout.addWidget(self.stop)
         layout =QtWidgets.QVBoxLayout()
-
         layout.addWidget(self.videoWidget)
         layout.addLayout(controlLayout)
         wid.setLayout(layout)
