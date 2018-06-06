@@ -21,7 +21,7 @@ class Window(QtWidgets.QMainWindow):
         self.stop.setText('Stop')
 
         openAction = QtWidgets.QAction(QtGui.QIcon('open.png'), '&Open', self)
-        openAction.setShortcut('Cmd+O')
+        openAction.setShortcut('Ctrl+O')
         openAction.setStatusTip('Open mp4 movie')
         openAction.triggered.connect(self.openFile)
 
@@ -41,7 +41,9 @@ class Window(QtWidgets.QMainWindow):
         controlLayout.addWidget(self.play)
         controlLayout.addWidget(self.stop)
         extralayout=QtWidgets.QHBoxLayout()
+        
         extralayout.addWidget(self.videoWidget)
+
 
         layout =QtWidgets.QVBoxLayout()
         layout.addLayout(extralayout)
@@ -59,6 +61,7 @@ class Window(QtWidgets.QMainWindow):
         if(self.k==0):
             self.mediaPlayer.play()
             self.play.setText('Pause')
+            self.videoWidget.update()
             self.k=1
         elif(self.k==1):
             self.mediaPlayer.pause()
