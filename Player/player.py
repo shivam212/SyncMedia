@@ -20,8 +20,12 @@ class Window(QtWidgets.QMainWindow):
         self.setWindowTitle('SyncMedia')
         menu = self.menuBar()
         file = menu.addMenu(' &File ')
+        openAction = QtWidgets.QAction(QtGui.QIcon('open.png'), '&Open', self)
+        openAction.setShortcut('Cmd+O')
+        openAction.setStatusTip('Open mp4 movie')
+        openAction.triggered.connect(self.openFile)
         open =QtWidgets.QAction(QtGui.QIcon('open.png'), '&Open', self)
-        file.addAction(open)
+        file.addAction(openAction)
         #file.addAction(close)
 
         self.play.clicked.connect(self.play_click)
@@ -44,7 +48,8 @@ class Window(QtWidgets.QMainWindow):
         self.videoWidget.update()
         layout.addLayout(controlLayout)
         wid.setLayout(layout)
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("/Users/shivam/Downloads/valerie amy.mp4")))
+
+        #self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile("/Users/shivam/Downloads/valerie amy.mp4")))
         self.mediaPlayer.setVideoOutput(self.videoWidget)
         self.videoWidget.show()
 
@@ -59,6 +64,15 @@ class Window(QtWidgets.QMainWindow):
             self.mediaPlayer.pause()
             self.play.setText('Play')
             self.k=0
+
+    def openFile(self):
+        fileName, _ =QtWidgets.QFileDialog.getOpenFileName(self, "Open Movie",
+                QDir.homePath())
+
+        if fileName != '':
+            print(fileName)
+            self.mediaPlayer.setMedia(
+                    QMediaContent(QUrl.fromLocalFile(fileName)))
 
 app=QtWidgets.QApplication(sys.argv)
 window=Window()
