@@ -30,6 +30,7 @@ class Window(QtWidgets.QMainWindow):
         file.addAction(openAction)
 
         self.play.clicked.connect(self.play_click)
+        self.stop.clicked.connect(self.stop_click)
         self.mediaPlayer =QMediaPlayer(None, QMediaPlayer.VideoSurface)
         self.videoWidget = QVideoWidget()
 
@@ -67,7 +68,10 @@ class Window(QtWidgets.QMainWindow):
             self.mediaPlayer.pause()
             self.play.setText('Play')
             self.k=0
-
+    def stop_click(self):
+    	self.mediaPlayer.stop()
+    	self.play.setText('Play')
+    	self.k=0
     def openFile(self):
         fileName,_=QtWidgets.QFileDialog.getOpenFileName(self, "Open Movie",
                 QDir.homePath())
