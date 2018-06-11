@@ -20,6 +20,12 @@ class Window(QtWidgets.QMainWindow):
         self.play.setText('Play')
         self.stop.setText('Stop')
 
+        self.Slider = QtWidgets.QSlider(self)
+        self.Slider.setRange(0, 100)
+        self.Slider.setValue(10)
+        self.Slider.setOrientation(Qt.Horizontal)
+        self.Slider.setFocusPolicy(Qt.NoFocus)
+
         openAction = QtWidgets.QAction(QtGui.QIcon('open.png'), '&Open', self)
         openAction.setShortcut('Ctrl+O')
         openAction.setStatusTip('Open mp4 movie')
@@ -41,6 +47,7 @@ class Window(QtWidgets.QMainWindow):
         controlLayout=QtWidgets.QHBoxLayout()
         controlLayout.addWidget(self.play)
         controlLayout.addWidget(self.stop)
+        controlLayout.addWidget(self.Slider)
         extralayout=QtWidgets.QHBoxLayout()
         
         extralayout.addWidget(self.videoWidget)
